@@ -14,17 +14,15 @@ public class User implements Serializable {
 	private String id;
 	private String name;
 	private String email;
-	private String password;
 	
 	public User() {
 	}
 
-	public User(String id, String name, String email, String password) {
+	public User(String id, String name, String email) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
-		this.password = password;
 	}
 
 	public String getId() {
@@ -51,14 +49,6 @@ public class User implements Serializable {
 		this.email = email;
 	}
 	
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

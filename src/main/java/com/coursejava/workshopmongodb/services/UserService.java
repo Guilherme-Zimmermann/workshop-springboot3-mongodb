@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coursejava.workshopmongodb.domain.User;
+import com.coursejava.workshopmongodb.dto.UserDTO;
 import com.coursejava.workshopmongodb.repositories.UserRepository;
 import com.coursejava.workshopmongodb.services.exceptions.ObjectNotFoundException;
 
@@ -32,5 +33,20 @@ public class UserService {
 	public void delete(String id) {
 		findById(id);
 		repository.deleteById(id);
+	}
+	
+	public User update(User obj) {
+		User newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repository.save(newObj);
+	}
+
+	private void updateData(User newObj, User obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
+	}
+	
+	public User fromDTO(UserDTO objDto) {
+		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
 	}
 }
