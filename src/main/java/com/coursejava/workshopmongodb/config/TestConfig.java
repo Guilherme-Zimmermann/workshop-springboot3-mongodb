@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.coursejava.workshopmongodb.domain.Post;
 import com.coursejava.workshopmongodb.domain.User;
 import com.coursejava.workshopmongodb.dto.AuthorDTO;
+import com.coursejava.workshopmongodb.dto.CommentDTO;
 import com.coursejava.workshopmongodb.repositories.PostRepository;
 import com.coursejava.workshopmongodb.repositories.UserRepository;
 
@@ -41,6 +42,13 @@ public class TestConfig implements CommandLineRunner{
 		Post post1 = new Post(null, sdf.parse("01/08/2023"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(u1));
 		Post post2 = new Post(null, sdf.parse("02/08/2023"), "Cheguei", "São Paulo tem muito transito!", new AuthorDTO(u1));
 		Post post3 = new Post(null, sdf.parse("26/07/2023"), "Bom dia", "Acordei feliz hoje", new AuthorDTO(u2));
+		
+		CommentDTO c1 = new CommentDTO("Boa viagem mano!", sdf.parse("01/08/2023"), new AuthorDTO(u2));
+		CommentDTO c2 = new CommentDTO("Aproveite!", sdf.parse("01/08/2023"), new AuthorDTO(u2));
+		CommentDTO c3 = new CommentDTO("Tenha um ótimo dia!", sdf.parse("01/08/2023"), new AuthorDTO(u1));
+		
+		post1.getComments().addAll(Arrays.asList(c1, c2));
+		post3.getComments().add(c3);
 		
 		postRepository.saveAll(Arrays.asList(post1, post2, post3));
 		
