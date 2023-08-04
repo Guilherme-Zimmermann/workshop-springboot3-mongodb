@@ -39,12 +39,14 @@ public class TestConfig implements CommandLineRunner{
 		userRepository.saveAll(Arrays.asList(u1, u2, u3));
 		
 		Post post1 = new Post(null, sdf.parse("01/08/2023"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(u1));
-		Post post2 = new Post(null, sdf.parse("26/07/2023"), "Bom dia", "Acordei feliz hoje", new AuthorDTO(u2));
+		Post post2 = new Post(null, sdf.parse("02/08/2023"), "Cheguei", "São Paulo tem muito transito!", new AuthorDTO(u1));
+		Post post3 = new Post(null, sdf.parse("26/07/2023"), "Bom dia", "Acordei feliz hoje", new AuthorDTO(u2));
 		
-		postRepository.saveAll(Arrays.asList(post1, post2));
+		postRepository.saveAll(Arrays.asList(post1, post2, post3));
 		
 		u1.getPosts().addAll(Arrays.asList(post1));
-		u2.getPosts().addAll(Arrays.asList(post2));
+		u1.getPosts().addAll(Arrays.asList(post2));
+		u2.getPosts().addAll(Arrays.asList(post3));
 		
 		userRepository.saveAll(Arrays.asList(u1, u2));
 	}
